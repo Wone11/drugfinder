@@ -1,0 +1,20 @@
+
+GET http://localhost:9020/api/users/v1/all-users/
+
+
+### check all the paths correct  
+GET http://localhost:9020/api/users/v1/all-userss/
+
+### login routes
+POST http://localhost:9020/api/users/v1/login/
+
+Content-Type: "application/json"
+{
+    "email":"ggirma143@gmail.com",
+    "password":"Gandayiki143!@"
+}
+
+### get express routes
+GET  http://localhost:9020/
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdnaXJtYTE0M0BnbWFpbC5jb20iLCJ1c2VySUQiOjEzLCJyb2xlIjoidXNlciIsImlhdCI6MTY4NDkwNzQzNCwiZXhwIjoxNjg0OTA3NDM5fQ.cRJxUAwqOTvzC-OuQuqFIMAaPFzcQMlsgVliBt3q-UM
+

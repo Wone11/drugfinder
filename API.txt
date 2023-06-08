@@ -1,0 +1,30 @@
+//get all users
+http://localhost:9020/api/users/v1/all-users
+
+//add new user 
+http://localhost:9020/api/users/v1/add-new-user/
+
+
+ "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browser": {
+    "path": false,
+    "stream": false,
+    "os": false,
+    "url": false,
+    "utils": false,
+    "browserify": false,
+    "crypto": false,
+    "http": false,
+    "https": false
+  },
+  "keywords": [
+    "webpack",
+    "webpack 4",
+    "configuration",
+    "config"
+  ],
