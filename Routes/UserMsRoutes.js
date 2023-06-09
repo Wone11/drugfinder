@@ -29,6 +29,9 @@ router.post("/forgot-password",UserMsControllers.ForgotPassword)
 //change password and to chack authorized to change it.......
 router.patch("/change-password",UserMsControllers.ChangePassword)
 
+//change password for public sites ....
+router.patch("/change-password-public",UserMsControllers.ChangePasswordForPublic)
+
 //refresh token ................................................
 router.post("/refreshToken",UserMsControllers.RefreshAccessToken)
 

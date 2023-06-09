@@ -38,11 +38,11 @@ class UserModel{
      * @param {*} status 
      * @returns 
      */
-    static async AddNewUser(userID,email,city,password,role,refreshToken,loginStatus,status,authorizationDocument,remark,phoneNumber,fullName,passwordChangedAt){
+    static async AddNewUser(userID,email,city,password,role,accessToken,loginStatus,status,authorizationDocument,remark,phoneNumber,fullName,passwordChangedAt){
         try {
             return new Promise((resolve) => {
-                db.query(`insert into users(userID,email,city,password,role,refreshToken,loginStatus,status,authorizationDocument,remark,phoneNumber,fullName,passwordChangedAt)
-                 values(?,?,?,?,?,?,?,?,?,?,?,?,?)`, [userID,email,city,password,role,refreshToken,loginStatus,status,authorizationDocument,remark,phoneNumber,fullName,passwordChangedAt], (error, result) => {
+                db.query(`insert into users(userID,email,city,password,role,accessToken,loginStatus,status,authorizationDocument,remark,phoneNumber,fullName,passwordChangedAt)
+                 values(?,?,?,?,?,?,?,?,?,?,?,?,?)`, [userID,email,city,password,role,accessToken,loginStatus,status,authorizationDocument,remark,phoneNumber,fullName,passwordChangedAt], (error, result) => {
                     if (!error)
                         resolve(true)
                     else {
@@ -67,6 +67,37 @@ class UserModel{
 
             return new Promise(resolve => {
                 db.query("SELECT COUNT(*) AS count FROM users WHERE email = ?", [email], (error, result) => {
+                    if (!error) {
+                        const count = result[0].count
+                        console.log("count : ",count);
+                        if(count===1){
+                            resolve(result)
+                        }
+                        else{
+                            resolve(false)
+                        }
+                    }else{
+                        console.log('Error Happened during user retrieval : ',error);
+                        resolve(error)
+                    }
+
+                })
+            })
+        } catch (error) {
+            console.log('Error Happened during users retrieval!',error);
+            return
+        }
+    }
+
+      
+    /**
+     * check user existense in database using token
+     * @param {Check } email 
+     */
+    static async CheckExistsByToken(accessToken){
+        try {
+            return new Promise(resolve => {
+                db.query("SELECT COUNT(*) AS count FROM users WHERE accessToken = ?", [accessToken], (error, result) => {
                     if (!error) {
                         const count = result[0].count
                         console.log("count : ",count);

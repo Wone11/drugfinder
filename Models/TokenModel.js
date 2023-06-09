@@ -25,6 +25,30 @@ class TokenModel{
         }
     }
 
+    /**
+     * get token exits
+     * @param {*} accessToken 
+     * @returns 
+     */
+    static async CheckTokenExists(accessToken){
+        try {
+            return new Promise(resolve => {
+                db.query("select * from tokens where accessToken = ?", [accessToken], (error, result) => {
+                    if (!error) {
+                        resolve(result)
+                    }else{
+                        console.log('Error Happened during user retrieval : ',error);
+                        resolve(error)
+                    }
+
+                })
+            })
+        } catch (error) {
+            console.log('Error Happened during users retrieval!',error);
+            return
+        }
+    }
+
    /**
     * Add new user access controller token
     * @param {*} userID 

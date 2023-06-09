@@ -84,7 +84,7 @@ export const AuthProvider=({children})=>{
      */
     let ResetPassword =async(e)=>{
         e.preventDefault()
-        let response = await fetch('http://localhost:9020/api/users/v1/change-password',{
+        let response = await fetch('http://localhost:9020/api/users/v1/change-password-public',{
             method:"POST",
             headers:{
                 "Content-Type":"application/json" 
@@ -105,7 +105,7 @@ export const AuthProvider=({children})=>{
         const status ='inactive'
         const remark =''
         const loginStatus='logOut'
-        const refreshToken=''
+        const accessToken=''
         const role ='user'
         let response = await fetch('http://localhost:9020/api/users/v1/add-new-user',{
             method:"POST",
@@ -115,7 +115,7 @@ export const AuthProvider=({children})=>{
             body:JSON.stringify({
                 'userID': userID, 'email': e.target.email.value,
                 'city': e.target.city.value, 'password': e.target.password.value,
-                'role': role,'refreshToken':refreshToken,
+                'role': role,'accessToken':accessToken,
                 'loginStatus': loginStatus, 'status': status,
                 'authorizationDocument': e.target.authorizationDocument.value, 'remark': remark,
                 'phoneNumber': e.target.phoneNumber.value, 'fullName': e.target.fullName.value,

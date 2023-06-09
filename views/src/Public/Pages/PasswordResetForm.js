@@ -7,7 +7,7 @@ import CustomInput from "../Components/CustomInput";
 import AuthContext from "../../Context/AuthContext";
 
 const ResetPasswordForm = () => {
-  let {ResetPasswordForm} = useContext(AuthContext)
+  let {ResetPassword} = useContext(AuthContext)
 
   return (
     <>
@@ -21,7 +21,7 @@ const ResetPasswordForm = () => {
               <p className="text-center mt-2 mb-3">
                 Enter token send through your email `🙌`
               </p>
-              <form action="form" onSubmit={ResetPasswordForm} className="d-flex flex-column gap-15">
+              <form action="form" onSubmit={ResetPassword} className="d-flex flex-column gap-15">
                 <CustomInput type="text" name="token" placeholder="password reset token *" />
                 <CustomInput type="password" name="password" placeholder="New password *" />
                 <CustomInput type="password" name="confirmPassword" placeholder="Confirm password *" />

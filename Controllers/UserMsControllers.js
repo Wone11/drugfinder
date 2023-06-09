@@ -49,7 +49,7 @@ class UserMsControllers{
       * @param {*} next 
       */
      static async AddNewUser(req,res,next){
-         let {userID,email,city,password,role,refreshToken,loginStatus,status,remark,phoneNumber,fullName}=req.body
+         let {userID,email,city,password,role,accessToken,loginStatus,status,remark,phoneNumber,fullName}=req.body
          console.log('password during registration : ' + password + "email : " + email );
          try {  
              await UserMsModel.CheckExists(email)
@@ -72,7 +72,7 @@ class UserMsControllers{
                                  res.json({
                                      msg:"There is no autorization document attached ..."                                })
                              }
-                             UserMsModel.AddNewUser(userID,email,city,password,role,refreshToken,loginStatus,status,authorizationDocument,remark,phoneNumber,fullName,passwordChangedAt)
+                             UserMsModel.AddNewUser(userID,email,city,password,role,accessToken,loginStatus,status,authorizationDocument,remark,phoneNumber,fullName,passwordChangedAt)
                              .then((users)=>{
                                  console.log('user addeded data : ' + users);
                                  if(users){
@@ -444,26 +444,38 @@ class UserMsControllers{
          try {
              await UserMsModel.CheckExists(email)
                   .then((user)=>{
+                    let data ={
+                        userID:user[0].userID,
+                        accessToken:accessToken
+                    }
                      if(user){
-                         TokenModel.AddToken(email,accessToken)
-                         .then((datas)=>{
-                           let data = {
-                                text: ` password reset token 👍: ${accessToken}`,
-                                subject: 'reset rassword ',
-                                html:  ` password reset token 👍: ${accessToken}`,
-                                to: email
-                            }
-                            SendMail(data,req,res,next)
-                            .then((done)=>{
-                                    res.json({
-                                        
-                                        msg:'your password reset token sent througy your emal :👍 ',
-                                        code:200
-                                    })
-                            }) .catch(error =>{console.log('error during sending password reset token  : ' + error)})
-                        }).catch(error =>{console.log('error during adding password reset token to tokens model : ' + error)})
+                         UserMsModel.updateData(data)
+                         .then(()=>{
+                            TokenModel.AddToken(email,accessToken)
+                                .then((datas) => {
+                                    let data = {
+                                        text: ` password reset token 👍: ${accessToken}`,
+                                        subject: 'reset rassword ',
+                                        html: ` password reset token 👍: ${accessToken}`,
+                                        to: email
+                                    }
+                                    SendMail(data, req, res, next)
+                                        .then((dones) => {
+                                            res.json({
+                                                msg: 'your password reset token sent througy your emal :👍 ',
+                                                code: 200
+                                            })
+                                        }).catch(error => { console.log('error during sending password reset token  : ' + error) })
+                                }).catch(error => { console.log('error during adding password reset token to tokens model : ' + error) })
+                         }).catch(err=>{console.log('error during update users access Token : ' + err);})
+                    }
+                    else{
+                        res.json({
+                            msg:'user email does not exists!'
+                        })
                     }
                  }).catch(error=>{console.log('error log : ' + error);})
+               
          } catch (error) {
              console.log('error occured during users in fo update : ' + error);
          }
@@ -474,7 +486,26 @@ class UserMsControllers{
         const password  = req.body.password
         
         try {
-            
+            TokenModel.CheckTokenExists(accessToken)
+            .then(()=>{
+                UserMsModel.CheckExistsByToken(accessToken)
+                .then((user)=>{
+                    let hashedPassword = bcrypt.hashSync(password,10)
+                    let data={
+                        userID:user[0].userID,
+                        password:hashedPassword
+                    }
+                    UserMsModel.updateData(data)
+                    .then((done)=>{
+                        TokenModel.DeleteToken(accessToken)
+                        .then(()=>{
+                            res.json({
+                                msg:'password changed successefully!'
+                            })
+                        }).catch((err)=>console.log('error during password delete after password reset' +err))
+                    }).catch(err=>{console.log('user data password reset failed error : ' + err);})
+                }).catch(err=>{console.log('user check by token raised an error : ' + err);})
+            }).catch(err=>{console.log('check token exits to reset password : ' + err);})
         } catch (error) {
             
         }
