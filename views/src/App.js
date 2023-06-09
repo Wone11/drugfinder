@@ -9,12 +9,12 @@ import {BrowserRouter as Router ,Routes,Route}  from 'react-router-dom'
 
 import Layout         from './Public/Components/Layout';
 import Home           from './Public/Pages/Home';
-import AboutUS        from './Public/Pages/AboutUS';
 import Contact        from './Public/Pages/Contact';
 import About          from './Public/Pages/About';
 import Login          from "./Public/Pages/Login";
 import OurStore       from "./Public/Pages/OurStore";
 import Signup         from "./Public/Pages/Signup";
+import Documentations from "./Public/Pages/Documentations";
 
 
 //All customers Import
@@ -27,7 +27,6 @@ import UsersProtectedRoute        from './ProtectedRoutes/UsersProtectedRoutes'
 
 //admins protected routes
 import AdminProtectedRoutes       from './ProtectedRoutes/AdministratorProtectedRoutes'
-
 
 //admin page imports
 import Stores                     from "./Administrator/Stores";
@@ -46,9 +45,9 @@ function App() {
             <Routes>
               <Route path='/' element={<Layout />}>
                 <Route index element={<Home />} />
-                <Route path='about' element={<AboutUS />} />
                 <Route path='contact' element={<Contact />} />
                 <Route path='about-us' element={<About />} />
+                <Route path='documentations' element={<About />} />
                 <Route path='product' element={<OurStore />} />
                 <Route path='login' element={<Login />} />
                 <Route path='forgot-password' element={<Login />} />

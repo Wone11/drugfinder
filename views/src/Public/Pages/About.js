@@ -1,10 +1,11 @@
 import React from 'react';
+import Container from '../Components/Container';
 
 const About = () => {
   return (
-    <header>
-        here is the contents for .. .
-    </header>
+    <Container>
+      here we are
+    </Container>
   );
 }
 
