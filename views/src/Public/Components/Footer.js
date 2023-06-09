@@ -52,7 +52,7 @@ const Footer = () => {
                   title="tel:+251 8264954234"
                   className="mt-3 d-block mb-1 text-white"
                 >
-                  +251 8264954234
+                  +251 990909090
                 </a>
                 <a
                   href="/"
@@ -68,7 +68,7 @@ const Footer = () => {
                   <a className="text-white" href="http://www.instagram.com/hunmande1212">
                     <BsInstagram className="fs-4" />
                   </a>
-                  <a className="text-white" href="http://www.github.com/wone11/">
+                  <a className="text-white" href="https://github.com/Wone11/drugfinder">
                     <BsGithub className="fs-4" />
                   </a>
                   <a className="text-white" href="http://www.youtube.com/hunmande1212">

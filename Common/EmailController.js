@@ -1,11 +1,11 @@
 const nodeMailer      =   require('nodemailer')
-const asyncHandller   =   require('express-async-handler')
+// const asyncHandller   =   require('express-async-handler')
 
 //email address config ....
 require('dotenv').config()
 
 
-const SendMail  = asyncHandller(async(data,req,res,next)=>{
+const SendMail  = async(data,req,res,next)=>{
   console.log('sent data : ' + data.to);
   let transporter = nodeMailer.createTransport({
     // service:'Gmail',
@@ -14,10 +14,11 @@ const SendMail  = asyncHandller(async(data,req,res,next)=>{
     secure: false, // true for 465, false for other ports
     auth: {
       user: 'sonangl2020@gmail.com',//process.env.MAIL_USER, // generated gmail user
-      pass: 'mwvyslcipsswpjxc', //process.env.MAIL_AUTH, // generated ethereal password
+      pass: 'jasvrzyfloykcjwf', //process.env.MAIL_AUTH, // generated ethereal password
     },
   });
-
+  
+  
   // send mail with defined transport object
   let info = await transporter.sendMail({
     from: `"GC 2015  💕👮‍♀️ 👻" <${process.env.MAIL_USER}>`, // sender address
@@ -26,6 +27,6 @@ const SendMail  = asyncHandller(async(data,req,res,next)=>{
     text: data.text, // plain text body
     html: data.html, // html body
   });
-})
-console.log('mailer : ' + SendMail);
+}
+// console.log('mailer : ' + SendMail.info());
 module.exports = SendMail

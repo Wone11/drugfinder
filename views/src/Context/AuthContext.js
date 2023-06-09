@@ -87,7 +87,7 @@ export const AuthProvider=({children})=>{
         })
         let data = await response.json()
         window.alert('response : ' + data.msg);
-        
+        window.location.reload(true)
     }
 
     let Logout=()=>{
