@@ -16,7 +16,7 @@ import OurStore       from "./Public/Pages/OurStore";
 import Signup         from "./Public/Pages/Signup";
 import Documentations from "./Public/Pages/Documentations";
 import Forgotpassword from "./Public/Pages/ForgotPassword";
-
+import ResetPassword  from "./Public/Pages/PasswordResetForm";
 
 //All customers Import
 import Customer                   from "./Customers/Customers";
@@ -48,10 +48,11 @@ function App() {
                 <Route index element={<Home />} />
                 <Route path='contact' element={<Contact />} />
                 <Route path='about-us' element={<About />} />
-                <Route path='documentations' element={<About />} />
+                <Route path='documentations' element={<Documentations />} />
                 <Route path='product' element={<OurStore />} />
                 <Route path='login' element={<Login />} />
                 <Route path='forgot-password' element={<Forgotpassword />} />
+                <Route path='reset-password' element={<ResetPassword />} />
                 <Route path='Signup' element={<Signup />} />
               </Route >
             </Routes>

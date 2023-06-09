@@ -1,11 +1,14 @@
-import React from "react";
+import React,{useContext} from "react";
 import BreadCrumb from "../Components/BreadCrumb";
 import Meta from "../Components/Meta";
 import { Link } from "react-router-dom";
 import Container from "../Components/Container";
 import CustomInput from "../Components/CustomInput";
+import AuthContext from '../../Context/AuthContext';
 
 const Forgotpassword = () => {
+  let {ForgotPassword} = useContext(AuthContext)
+
   return (
     <>
       <Meta title={"Forgot Password"} />
@@ -16,9 +19,9 @@ const Forgotpassword = () => {
             <div className="auth-card">
               <h3 className="text-center mb-3">Reset Your Password</h3>
               <p className="text-center mt-2 mb-3">
-                We will send you an email to reset your password
+                We will send you password reset tokenthrough your email
               </p>
-              <form action="" className="d-flex flex-column gap-15">
+              <form action="form" onSubmit={ForgotPassword} className="d-flex flex-column gap-15">
                 <CustomInput type="email" name="email" placeholder="Email" />
 
                 <div>
@@ -26,7 +29,7 @@ const Forgotpassword = () => {
                     <button className="button border-0" type="submit">
                       Submit
                     </button>
-                    <Link to="/forgot-password">Cancel</Link>
+                    <Link to="/login">Cancel</Link>
                   </div>
                 </div>
               </form>

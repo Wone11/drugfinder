@@ -50,6 +50,25 @@ class TokenModel{
             console.log('error happened during user creation : ', error);
         }
     }
+
+    static async DeleteToken(accessToken){
+        try {
+            return new Promise((resolve) => {
+                db.query(`DELETE tokens where accessToken =`, [accessToken], (error, result) => {
+                    if (!error)
+                        resolve(result)
+                    else {
+                        console.log("Error Happened : ", error);
+                        resolve(false)
+                    }
+                })
+
+
+            })
+        } catch (error) {
+            console.log('error happened during user creation : ', error);
+        }
+    }
 }
 
 module.exports = TokenModel

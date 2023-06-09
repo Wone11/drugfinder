@@ -2,18 +2,13 @@ import React,{ createContext, useContext, useEffect, useState } from "react";
 import jwt_decode  from "jwt-decode";
 import {useNavigate} from 'react-router-dom'
 
-// import axios from "axios";
-
-
-// import { Nav } from "../Administrator/AdminNavBarElements";
-
 const AuthContext  = createContext()
 
 export default AuthContext
 
 export const AuthProvider=({children})=>{
     const Navigate = useNavigate()
-    let [authToken,setAuthToken] =useState(()=>localStorage.getItem('accessToken') ? JSON.parse(localStorage.getItem('accessToken')) :null)
+    let [authToken,setAuthToken] =useState(()=>localStorage.getItem('refreshToken') ? JSON.parse(localStorage.getItem('refreshToken')) :null)
     let [user,setUser] =useState(()=>localStorage.getItem('accessToken') ? jwt_decode(localStorage.getItem('accessToken')) :null)
     let [loading,setLoading] = useState(true)
     const [auth,setAuth]   = useState()
@@ -63,6 +58,47 @@ export const AuthProvider=({children})=>{
         //to do something here...
 
     }
+
+    /**
+     * forgot password to generate and got  token trough an emails
+     * @param {*} e 
+     */
+    let ForgotPassword = async(e)=>{
+        e.preventDefault()
+        let response = await fetch('http://localhost:9020/api/users/v1/forgot-password',{
+            method:"POST",
+            headers:{
+                "Content-Type":"application/json" 
+            },
+            body:JSON.stringify({'email':e.target.email.value})
+        })
+        // let data = await response.json()
+        Navigate('/reset-password')
+        
+        // window.alert('message : ' + data.msg);
+    }
+
+    /**
+     * Reset password after token got though an email is correct
+     * @param {*} e 
+     */
+    let ResetPassword =async(e)=>{
+        e.preventDefault()
+        let response = await fetch('http://localhost:9020/api/users/v1/change-password',{
+            method:"POST",
+            headers:{
+                "Content-Type":"application/json" 
+            },
+            body:JSON.stringify({'token':e.target.token.value,'password':e.target.password.value,'confirmPassword':e.target.confirmPassword.value})
+        })
+        let data = await response.json()
+        window.alert('message : ' + data.msg);
+    }
+
+    /**
+     * New user Registrations here!
+     * @param {*} e 
+     */
     let RegisterNewUser=async(e)=>{
         e.preventDefault()
         const userID =0
@@ -108,8 +144,9 @@ export const AuthProvider=({children})=>{
             headers:{
                 "Content-Type":"application/json" 
             },
-            body:JSON.stringify({'refresh':authToken.refresh})
+            body:JSON.stringify({'refresh':authToken.refreshToken})
         })
+        console.log('refreshToken :' + authToken.tefreshToken);
         let data = await response.json()
         window.alert(data.status)
         if(response.status===200){
@@ -129,7 +166,9 @@ export const AuthProvider=({children})=>{
         RegisterNewUser:RegisterNewUser,
         Logout:Logout,
         UpdateToken:UpdateToken,
-        Subscriptions:Subscriptions
+        Subscriptions:Subscriptions,
+        ForgotPassword:ForgotPassword,
+        ResetPassword:ResetPassword
     }
 
     //login path controllers

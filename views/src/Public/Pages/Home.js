@@ -9,7 +9,6 @@ import HomeBanner3 from "../Images/main-a.avif";
 import HomeBanner4 from "../Images/main-a2.avif";
 
 const Home = () => {
-const [services, setSevices] = useState([])
 
   return (
     <>

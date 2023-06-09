@@ -23,6 +23,9 @@ router.get("/pended-users",UserMsControllers.PendedUsers)
 //login user
 router.post("/login",UserMsControllers.Login)
 
+//forgot password to got token through an email
+router.post("/forgot-password",UserMsControllers.ForgotPassword)
+
 //change password and to chack authorized to change it.......
 router.patch("/change-password",UserMsControllers.ChangePassword)
 

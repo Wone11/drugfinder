@@ -22,6 +22,9 @@ router.post('/refresh-token',UserController.RefreshToken)
 //sign in 
 router.post('/signIN',UserController.SigIN)
 
+//forgot-password
+router.patch('/forgot-password',UserController.ResetPassword)
+
 //reset password 
 router.patch('/reset-password',UserController.ResetPassword)
 
