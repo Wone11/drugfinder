@@ -15,6 +15,7 @@ import Login          from "./Public/Pages/Login";
 import OurStore       from "./Public/Pages/OurStore";
 import Signup         from "./Public/Pages/Signup";
 import Documentations from "./Public/Pages/Documentations";
+import Forgotpassword from "./Public/Pages/ForgotPassword";
 
 
 //All customers Import
@@ -50,7 +51,7 @@ function App() {
                 <Route path='documentations' element={<About />} />
                 <Route path='product' element={<OurStore />} />
                 <Route path='login' element={<Login />} />
-                <Route path='forgot-password' element={<Login />} />
+                <Route path='forgot-password' element={<Forgotpassword />} />
                 <Route path='Signup' element={<Signup />} />
               </Route >
             </Routes>
