@@ -19,10 +19,10 @@ const OurStore = () => {
               <h3 className="filter-title">Shop By Categories</h3>
               <div>
                 <ul className="ps-0">
-                  <li>Watch</li>
-                  <li>Tv</li>
-                  <li>Camera</li>
-                  <li>Laptop</li>
+                  <li>cosmotics</li>
+                  <li>babys diapers</li>
+                  <li>drugs</li>
+                  <li>stimulants</li>
                 </ul>
               </div>
             </div>
@@ -39,7 +39,7 @@ const OurStore = () => {
                       id=""
                     />
                     <label className="form-check-label" htmlFor="">
-                      In Stock (1)
+                      Neary by (1)
                     </label>
                   </div>
                   <div className="form-check">
@@ -50,7 +50,7 @@ const OurStore = () => {
                       id=""
                     />
                     <label className="form-check-label" htmlFor="">
-                      Out of Stock(0)
+                      City in selected(0)
                     </label>
                   </div>
                 </div>
@@ -63,7 +63,7 @@ const OurStore = () => {
                       id="floatingInput"
                       placeholder="From"
                     />
-                    <label htmlFor="floatingInput">From</label>
+                    <label htmlFor="floatingInput">latitude</label>
                   </div>
                   <div className="form-floating">
                     <input
@@ -72,10 +72,10 @@ const OurStore = () => {
                       id="floatingInput1"
                       placeholder="To"
                     />
-                    <label htmlFor="floatingInput1">To</label>
+                    <label htmlFor="floatingInput1">longitude</label>
                   </div>
                 </div>
-                <h5 className="sub-title">Colors</h5>
+                {/* <h5 className="sub-title">Colors</h5> */}
                 <div>
                   <Color />
                 </div>
@@ -111,16 +111,16 @@ const OurStore = () => {
               <div>
                 <div className="product-tags d-flex flex-wrap align-items-center gap-10">
                   <span className="badge bg-light text-secondary rounded-3 py-2 px-3">
-                    Headphone
+                    Amoxixiline
                   </span>
                   <span className="badge bg-light text-secondary rounded-3 py-2 px-3">
-                    Laptop
+                    Lactoce
                   </span>
                   <span className="badge bg-light text-secondary rounded-3 py-2 px-3">
-                    Mobile
+                    H2O2
                   </span>
                   <span className="badge bg-light text-secondary rounded-3 py-2 px-3">
-                    Wire
+                    Vicks
                   </span>
                 </div>
               </div>
@@ -130,15 +130,8 @@ const OurStore = () => {
               <div>
                 <div className="random-products mb-3 d-flex">
                   <div className="w-50">
-                    <img
-                      src="images/watch.jpg"
-                      className="img-fluid"
-                      alt="watch"
-                    />
-                  </div>
-                  <div className="w-50">
                     <h5>
-                      Kids headphones bulk 10 pack multi colored for students
+                      made of sustainably-sourced materials—such as lyocell and bamboo
                     </h5>
                     <ReactStars
                       count={5}
@@ -147,20 +140,13 @@ const OurStore = () => {
                       edit={false}
                       activeColor="#ffd700"
                     />
-                    <b>$ 300</b>
+                    <b>600 ETB</b>
                   </div>
                 </div>
                 <div className="random-products d-flex">
                   <div className="w-50">
-                    <img
-                      src="images/watch.jpg"
-                      className="img-fluid"
-                      alt="watch"
-                    />
-                  </div>
-                  <div className="w-50">
                     <h5>
-                      Kids headphones bulk 10 pack multi colored for students
+                     baby diapers 60 items
                     </h5>
                     <ReactStars
                       count={5}
@@ -169,7 +155,7 @@ const OurStore = () => {
                       edit={false}
                       activeColor="#ffd700"
                     />
-                    <b>$ 300</b>
+                    <b>656 ETB</b>
                   </div>
                 </div>
               </div>
@@ -192,51 +178,19 @@ const OurStore = () => {
                     <option value="best-selling">Best selling</option>
                     <option value="title-ascending">Alphabetically, A-Z</option>
                     <option value="title-descending">
-                      Alphabetically, Z-A
+                     Hawassa
                     </option>
-                    <option value="price-ascending">Price, low to high</option>
-                    <option value="price-descending">Price, high to low</option>
-                    <option value="created-ascending">Date, old to new</option>
-                    <option value="created-descending">Date, new to old</option>
+                    <option value="price-ascending">SHashemene</option>
+                    <option value="price-descending">Addis Ababa</option>
+                    <option value="created-ascending">Wondogenet</option>
+                    <option value="created-descending">All Availablity</option>
                   </select>
                 </div>
                 <div className="d-flex align-items-center gap-10">
                   <p className="totalproducts mb-0">21 Products</p>
                   <div className="d-flex gap-10 align-items-center grid">
-                    <img
-                      onClick={() => {
-                        setGrid(3);
-                      }}
-                      src="images/gr4.svg"
-                      className="d-block img-fluid"
-                      alt="grid"
-                    />
-                    <img
-                      onClick={() => {
-                        setGrid(4);
-                      }}
-                      src="images/gr3.svg"
-                      className="d-block img-fluid"
-                      alt="grid"
-                    />
-                    <img
-                      onClick={() => {
-                        setGrid(6);
-                      }}
-                      src="images/gr2.svg"
-                      className="d-block img-fluid"
-                      alt="grid"
-                    />
-
-                    <img
-                      onClick={() => {
-                        setGrid(12);
-                      }}
-                      src="images/gr.svg"
-                      className="d-block img-fluid"
-                      alt="grid"
-                    />
                   </div>
+                    
                 </div>
               </div>
             </div>
