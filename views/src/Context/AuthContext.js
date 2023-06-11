@@ -85,11 +85,11 @@ export const AuthProvider=({children})=>{
     let ResetPassword =async(e)=>{
         e.preventDefault()
         let response = await fetch('http://localhost:9020/api/users/v1/change-password-public',{
-            method:"POST",
+            method:"PATCH",
             headers:{
                 "Content-Type":"application/json" 
             },
-            body:JSON.stringify({'token':e.target.token.value,'password':e.target.password.value,'confirmPassword':e.target.confirmPassword.value})
+            body:JSON.stringify({'accessToken':e.target.accessToken.value,'password':e.target.password.value,'confirmPassword':e.target.confirmPassword.value})
         })
         let data = await response.json()
         window.alert('message : ' + data.msg);

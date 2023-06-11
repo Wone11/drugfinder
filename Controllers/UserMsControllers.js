@@ -448,32 +448,32 @@ class UserMsControllers{
                         userID:user[0].userID,
                         accessToken:accessToken
                     }
-                     if(user){
-                         UserMsModel.updateData(data)
-                         .then(()=>{
-                            TokenModel.AddToken(email,accessToken)
-                                .then((datas) => {
-                                    let data = {
-                                        text: ` password reset token 👍: ${accessToken}`,
-                                        subject: 'reset rassword ',
-                                        html: ` password reset token 👍: ${accessToken}`,
-                                        to: email
-                                    }
-                                    SendMail(data, req, res, next)
-                                        .then((dones) => {
-                                            res.json({
-                                                msg: 'your password reset token sent througy your emal :👍 ',
-                                                code: 200
-                                            })
-                                        }).catch(error => { console.log('error during sending password reset token  : ' + error) })
-                                }).catch(error => { console.log('error during adding password reset token to tokens model : ' + error) })
-                         }).catch(err=>{console.log('error during update users access Token : ' + err);})
-                    }
-                    else{
-                        res.json({
-                            msg:'user email does not exists!'
-                        })
-                    }
+                      UserMsModel.updateData(data)
+                          .then((user, err) => {
+                            //   console.log('update log' + user[0].accessToken + "   :  "+ user[0].userID);
+                              if (!user) {
+                                  console.log('log the reason' + err);
+                                  res.json({
+                                      msg: "user can't update an access token to reset password! "
+                                  })
+                              }
+                              TokenModel.AddToken(email, accessToken)
+                                  .then((datas) => {
+                                      let data = {
+                                          text: ` password reset token 👍: ${accessToken}`,
+                                          subject: 'reset rassword ',
+                                          html: ` password reset token 👍: ${accessToken}`,
+                                          to: email
+                                      }
+                                      SendMail(data, req, res, next)
+                                          .then((dones) => {
+                                              res.json({
+                                                  msg: 'your password reset token sent througy your emal :👍 ',
+                                                  code: 200
+                                              })
+                                          }).catch(error => { console.log('error during sending password reset token  : ' + error) })
+                                  }).catch(error => { console.log('error during adding password reset token to tokens model : ' + error) })
+                          }).catch(err=>{console.log('error during update users access Token : ' + err);})
                  }).catch(error=>{console.log('error log : ' + error);})
                
          } catch (error) {
@@ -481,10 +481,17 @@ class UserMsControllers{
          }
      }
 
+     /**
+      * change public password
+      * @param {*} req 
+      * @param {*} res 
+      * @param {*} next 
+      */
      static async ChangePasswordForPublic(req,res,next){
         const accessToken = req.body.accessToken
         const password  = req.body.password
         
+        console.log('access toke :' + accessToken + 'password : ' + password);
         try {
             TokenModel.CheckTokenExists(accessToken)
             .then(()=>{

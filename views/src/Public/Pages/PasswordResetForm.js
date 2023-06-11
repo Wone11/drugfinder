@@ -22,7 +22,7 @@ const ResetPasswordForm = () => {
                 Enter token send through your email `🙌`
               </p>
               <form action="form" onSubmit={ResetPassword} className="d-flex flex-column gap-15">
-                <CustomInput type="text" name="token" placeholder="password reset token *" />
+                <CustomInput type="text" name="accessToken" placeholder="password reset token *" />
                 <CustomInput type="password" name="password" placeholder="New password *" />
                 <CustomInput type="password" name="confirmPassword" placeholder="Confirm password *" />
 
