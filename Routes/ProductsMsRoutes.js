@@ -17,4 +17,6 @@ router.post('/add-product',upload.single('productImage'),ProductMsController.Add
 //update some specific product details...
 router.patch('/update-products/:productID',upload.single('productImage'),ProductMsController.UpdateProducts)
 
+router.delete('/delete-products/:productID',ProductMsController.DeleteDrugs)
+
 module.exports =router

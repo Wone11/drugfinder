@@ -2,6 +2,7 @@ import Image from '../../Images/Home/Home.svg';
 import ImageTwo from '../../Images/Home/Home1.jpg';
 import ImageThree from '../../Images/Home/Home2.jpg';
 import ImageFour from '../../Images/Home/Home4.jpg';
+import * as Products from '../API/Products'
 
 export const AboutUsDataOne = {
     lightBg: false,

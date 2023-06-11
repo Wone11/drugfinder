@@ -139,6 +139,32 @@ class ProductsMsController{
          console.log('Error Happened : ',error);
         }
     }
+
+      /**
+      * Delete Users
+      * @param {*} req 
+      * @param {*} res 
+      * @param {*} next 
+      */
+      static async DeleteDrugs(req,res,next){
+        const  productID = req.params.productID
+        console.log('delete user iD : ' + productID);
+        try {
+            await ProductsModels.DeleteDrug(productID)
+                .then((products ,error)=>{
+                    if(error) console.log('error during users data delete : ' + error)
+                    res.json({
+                        msg:"success",
+                        statusCode:201,
+                        data:products
+                    })
+                }).catch(error=>{console.log('error happened during users deleting : ' + error);})
+        } catch (error) {
+            console.log('error occured during users deleting .. : ' + error);
+        }
+
+    }
+
 }
 
 module.exports = ProductsMsController

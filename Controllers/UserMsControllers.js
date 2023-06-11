@@ -129,7 +129,7 @@ class UserMsControllers{
              city:req.body.city,
              password:req.body.password,
              role:req.body.role,
-             refreshToken:req.body.refreshToken,
+             accessToken:req.body.accessToken,
              loginStatus:req.body.loginStatus,
              status:req.body.status,
              remark:req.body.remark,

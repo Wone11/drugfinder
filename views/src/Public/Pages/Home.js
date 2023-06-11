@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Marquee from "react-fast-marquee";
 import Container from "../Components/Container";
@@ -7,9 +7,9 @@ import HomeBanner1 from "../Images/main-b1.avif";
 import HomeBanner2 from "../Images/main-a1.avif";
 import HomeBanner3 from "../Images/main-a.avif";
 import HomeBanner4 from "../Images/main-a2.avif";
+// import Products    from '../../API/ProductsAPI'
 
 const Home = () => {
-
   return (
     <>
       <Container class1="home-wrapper-1 py-5">
@@ -98,7 +98,7 @@ const Home = () => {
         <div className="row">
           <div className="col-12">
             <div className="servies d-flex align-items-center justify-content-between">
-              {/* {services?.map((i, j) => {
+              {/* {Products?.map((i, j) => {
                 return (
                   <div className="d-flex align-items-center gap-15" key={j}>
                     <img src={i.image} alt="services" />

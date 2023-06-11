@@ -72,6 +72,31 @@ class ProductsMsModel{
         }
     }
 
+      /**
+     * Delete users from Database...
+     * @param {*} userID 
+     * @returns 
+     */
+      static async DeleteDrug(productID){
+        try {
+
+            return new Promise(resolve => {
+                db.query(`DELETE FROM ${Tables.PRODUCT_TABLE} where productID = ? `, [productID], (error, result) => {
+                    if (!error) {
+                        resolve(result)
+                    }else{
+                        console.log('Error Happened during user deletion : ',error);
+                        resolve(error)
+                    }
+
+                })
+            })
+        } catch (error) {
+            console.log('Error Happened during users deletion!',error);
+            return
+        }
+    }
+
     /**
      * Get Near by drug shops
      * @param {*} location 
