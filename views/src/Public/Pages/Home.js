@@ -8,8 +8,32 @@ import HomeBanner2 from "../Images/main-a1.avif";
 import HomeBanner3 from "../Images/main-a.avif";
 import HomeBanner4 from "../Images/main-a2.avif";
 // import Products    from '../../API/ProductsAPI'
+import axios       from "axios";
 
 const Home = () => {
+  const [ ,setLoading]       = useState(false);
+const [products,setProducts] = useState([])
+
+ /**
+     * Use Effect...
+     */
+ useEffect(() => {
+  const fetchData = async () => {
+      setLoading(true);
+      try {
+          const { data: response } = await axios.get(`http://localhost:9020/api/products/v2/products`);
+          setProducts(response);
+          console.log("response : " +response);
+      } catch (error) {
+          console.error(error.message);
+      }
+      setLoading(true);
+  }
+ 
+  fetchData();
+}, []);
+
+
   return (
     <>
       <Container class1="home-wrapper-1 py-5">
@@ -98,17 +122,19 @@ const Home = () => {
         <div className="row">
           <div className="col-12">
             <div className="servies d-flex align-items-center justify-content-between">
-              {/* {Products?.map((i, j) => {
+              {products?.map((i, j) => {
                 return (
                   <div className="d-flex align-items-center gap-15" key={j}>
-                    <img src={i.image} alt="services" />
+                    <img src={i.productImage} alt="" />
                     <div>
-                      <h6>{i.title}</h6>
-                      <p className="mb-0">{i.tagline}</p>
+                      <h6>drug name :{i.drugName}</h6>
+                      <h6>price : {i.price} ETB</h6>
+                      <p className="mb-0">item available : {i.amount}</p>
+                      <p className="mb-0">city : {i.city}</p>
                     </div>
                   </div>
                 );
-              })} */}
+              })}
             </div>
           </div>
         </div>
