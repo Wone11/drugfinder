@@ -43,23 +43,25 @@ const Footer = () => {
             <div className="col-4">
               <h4 className="text-white mb-4">Contact Us</h4>
               <div>
-                <address className="text-white fs-6">
-                  Phone :  +251 990909090, <br /> Email:hunmande1212@gmail.com <br />
-                  contry: Ethiopia
-                </address>
+               
                 <a
                   href="/"
                   title="tel:+251 8264954234"
                   className="mt-3 d-block mb-1 text-white"
                 >
-                  +251 990909090
                 </a>
                 <a
                   href="/"
                   text="mailto:hunmande1212@gmail.com"
                   className="mt-2 d-block mb-0 text-white"
                 >
-                  hunmande1212@gmail.com
+                <address className="text-white fs-6">
+                  Phone :  +251 990909090, <br />
+                  Email:hunmande1212@gmail.com <br />
+                  fax: +251 990909091 <br></br><br></br>
+
+                  contry: Ethiopia
+                </address>   
                 </a>
                 <div className="social_icons d-flex align-items-center gap-30 mt-4">
                   <a className="text-white" href="http://www.linkedin.com/hunmande1212">

@@ -1,7 +1,6 @@
-import {configureStore} from '@reduxjs/toolkit';
+import axios   from  'axios'
 
-export const Store =configureStore({
-    reducer:{
-        
-    }
-})
+export const Products = async() =>{
+    const result = await axios.get('http://localhost:9020/api/products/v2/products/');
+    return result.data;
+}
