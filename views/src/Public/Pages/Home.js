@@ -130,7 +130,10 @@ const [products,setProducts] = useState([])
                       <h6>drug name :{i.drugName}</h6>
                       <h6>price : {i.price} ETB</h6>
                       <p className="mb-0">item available : {i.amount}</p>
+                      <p className="mb-0">descriptions : {i.description}</p>
+                      <br></br>
                       <p className="mb-0">city : {i.city}</p>
+
                     </div>
                   </div>
                 );
