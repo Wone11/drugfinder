@@ -1,13 +1,36 @@
-import React, { useState } from "react";
+import React, { useEffect,useState } from "react";
 import BreadCrumb from "../Components/BreadCrumb";
 import Meta from "../Components/Meta";
 import ReactStars from "react-rating-stars-component";
 import ProductCard from "../Components/ProductCard";
-import Color from "../Components/Color";
+// import Color from "../Components/Color";
 import Container from "../Components/Container";
+import axios  from "axios";
 
 const OurStore = () => {
   const [grid, setGrid] = useState(4);
+  const [, setLoading] = useState(false);
+  const [products, setProducts] = useState([])
+
+  /**
+     * Use Effect...
+     */
+ useEffect(() => {
+  const fetchData = async () => {
+      setLoading(true);
+      try {
+          const { data: response } = await axios.get(`http://localhost:9020/api/products/v2/products`);
+          setProducts(response);
+          console.log("response : " +response);
+      } catch (error) {
+          console.error(error.message);
+      }
+      setLoading(true);
+  }
+ 
+  fetchData();
+}, []);
+
   return (
     <>
       <Meta title={"Our Store"} />
@@ -77,7 +100,7 @@ const OurStore = () => {
                 </div>
                 {/* <h5 className="sub-title">Colors</h5> */}
                 <div>
-                  <Color />
+                  {/* <Color /> */}
                 </div>
                 <h5 className="sub-title">Size</h5>
                 <div>
@@ -187,7 +210,7 @@ const OurStore = () => {
                   </select>
                 </div>
                 <div className="d-flex align-items-center gap-10">
-                  <p className="totalproducts mb-0">21 Products</p>
+                <p className="totalproducts mb-0">{products.length }  products available</p>
                   <div className="d-flex gap-10 align-items-center grid">
                   </div>
                     

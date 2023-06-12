@@ -11,8 +11,10 @@ import HomeBanner4 from "../Images/main-a2.avif";
 import axios       from "axios";
 
 const Home = () => {
-  const [ ,setLoading]       = useState(false);
-const [products,setProducts] = useState([])
+  const [, setLoading] = useState(false);
+  const [products, setProducts] = useState([])
+  const [searchInput , setSearchInput] = useState('')
+
 
  /**
      * Use Effect...
